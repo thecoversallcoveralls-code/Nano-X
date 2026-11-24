@@ -1,0 +1,7 @@
+#immenent upgrades
+
+so I'm going to add switches to control the harmonic content styling. by this I mean how it adds it. 2,4 or 3,6 etc. I will be adding switches to control the SI5351A. As well to make selectable higher or lower than the fundamental frequency out. 
+
+#Future considerations
+
+possibly adding a second SI5351A and 2 additional cross faders to Mix in negative harmonics. as well as associated switches
