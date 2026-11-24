@@ -1,0 +1,22 @@
+Module Module Pin Nano Pin Notes
+
+SI5351A
+
+Si5351A VCC 5V (or 3.3V) Use 5V only if board has an onboard 3.3V regulator; otherwise 3.3V
+Si5351A GND GND Common ground
+Si5351A SDA A4 I2C Data
+Si5351A SCL A5 I2C Clock
+
+AD9850
+
+AD9850 VCC 5V 5V supply
+AD9850 GND GND Common ground
+AD9850 W_CLK D8 Word Load Clock
+AD9850 FQ_UD D9 Frequency Update
+AD9850 DATA D10 Serial Data Load (leave D0–D7 on AD9850 unconnected)
+AD9850 RESET D11 Reset
+
+MIDI
+
+MIDI Breakout TX (MIDI Out) D0 (RX0) Unplug during USB code uploads, plug in to play
+MIDI Breakout VCC / GND 5V / GND
