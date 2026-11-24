@@ -1,0 +1,23 @@
+Parts List
+
+​3x Potentiometers: 10 kΩ or 50 kΩ Linear (B10K or B50K) or Audio/Log (A10K / A50K) 
+
+— one volume knob each for AD9850 Bass, Si5351A CLK0, and Si5351A CLK1 (plus an optional 4th if you want AD9850 QOUT1 square wave or Si5351A CLK2).  
+
+​3x DC-Blocking Capacitors: 4.7 µF or 10 µF electrolytic (25V or 50V).  
+
+​1x Ground Reference Resistor: 47 kΩ (1/4 W). 
+ 
+​Summing Resistors:
+
+​10 kΩ (1/4 W) for the AD9850 channel (keeps the bass stronger since its sine wave amplitude is ~1 Vpp).  
+
+​22 kΩ to 33 kΩ (1/4 W) for each Si5351A channel (tames the louder 3.3 Vpp square waves so they don't overpower the sine bass).  
+
+​Optional Warmth / Low-Pass Stage (for AD9850 Bass):
+
+​1 kΩ resistor + 2x 1N4148 diodes (for subtle analog saturation/growl).  
+
+​2.2 kΩ resistor + 100 nF (0.1 µF) ceramic/film cap (creates a ~720 Hz passive low-pass filter to round off digital stepping).  
+
+​1x Output Jack: 1/4" (6.35 mm) or 3.5 mm mono TS jack.
