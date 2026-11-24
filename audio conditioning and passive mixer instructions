@@ -7,3 +7,156 @@ Analog Audio Conditioning & Passive Fader Mixer Schematic
 ​Sum the conditioned AD9850 sine bass (via a 10 kΩ mixing resistor or fader) with the AD9850 square wave (QOUT1) and Si5351A CLK0 / CLK1 
 outputs(each through a DC-blocking cap 
 and 22 kΩ–47 kΩ resistor/fader).
+
+Core Wiring Summary 
+
+​Arduino Nano \AD9850 (Serial Load Mode):
+
+​5V \VCC, 
+GND \GND ​
+D8\W_CLK 
+D9\FQ_UD 
+D10\DATA
+D11\RESET  
+
+​Audio outputs: 
+
+ZOUT1 (sine bass) 
+QOUT1 (synchronized square)
+go to Channels 1 & 2 of your passive mixer.  
+
+​Arduino Nano \ Si5351A (I2C Bus):
+
+​5V (if board has an onboard 3.3V regulator, otherwise 3.3V) \VCC
+GND \ GND  
+​A4 \ SDA
+A5 \ SCL  
+
+​Clock outputs: 
+
+CLK0 and CLK1 (plus optional CLK2) go to your mixer/harmonic stages.  
+#this means the vcc pin of the sliding pots
+
+How to Wire Each Red Slide Pot Module 
+(Passive Audio Mode)
+​VCC pin \ AC-Coupled Audio Signal IN 
+(from the channel's DC-blocking capacitor)
+
+​GND pin \ System GND 
+(bottom of the voltage divider)
+
+​OTA pin \ Attenuated Wiper OUT 
+(goes to that channel's summing resistor)
+
+​MIDI Breakout (from MPK88 MIDI OUT):
+
+​TX \ Nano D0 (RX0)
+
+#(unplug before uploading code via USB)
+​Power and GND shared with your common system ground.
+
+
+Channel-by-Channel Wiring & Resistor Balancing
+
+
+chanel 1 
+
+(Sine Bass) 
+
+Source pin 
+
+AD9850 / ZOUT1 
+
+Input conditions
+
+4.7 µF cap 
+(+ to ZOUT1) 
+47 kΩ to GND 
+(optional 1 kΩ + 2x 1N4148 warmth + 2.2 kΩ / 100 nF LPF)
+
+Slider pins
+
+VCC: Signal In
+GND: GND
+OTA: Wiper Out
+
+Summing Resistor to Mix Bus
+
+10 kΩ (keeps bass strong)
+
+
+Chanel 2
+
+Square Sub
+
+Source pin
+
+AD9850 / QOUT1
+
+Input conditions 
+
+4.7 µF cap (+ to QOUT1)
+
+Slider pins
+
+VCC: Signal In
+GND: GND
+OTA: Wiper Out
+
+Summing Resistor to mixer Bus
+
+33 kΩ (tames the 5 Vpp square wave)
+
+
+Channel 3
+
+Harmonic 1
+
+Source pin
+
+SI5351A / CLK0
+
+Input conditions 
+
+4.7 µF cap (+ to CLK0)
+
+Slider pins
+
+VCC: Signal In
+GND: GND
+OTA: Wiper Out
+
+Summing resistor to mixer Bus
+
+27 kΩ (balances 3.3 Vpp clock)
+
+
+Channel 4
+
+Harmonic 2
+
+Source pin
+
+SI5351A / CLK1
+
+Input conditions 
+
+4.7 µF cap (+ to CLK1)
+
+Slider pins
+
+VCC: Signal In
+GND: GND
+OTA: Wiper Out
+
+Summing resistor to mixer Bus
+
+27 kΩ (balances 3.3 Vpp clock)
+
+Passive Mix Bus: 
+
+Tie the far ends of all four summing resistors (10 kΩ, 33 kΩ, 27 kΩ, 27 kΩ) together and run that node to the Tip of your 1/4" or 3.5 mm output jack (with Sleeve tied to System GND).
+
+​Bonus Master Tone Knob: 
+
+You can also wire one of those blue rotary pots mounted below your sliders as a passive low-pass tone control right at the output (Mix Bus \rightarrow rotary pot wiper/end lug \rightarrow 47 nF cap to GND) to roll off harsh digital harmonics on the fly.  
