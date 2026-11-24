@@ -160,3 +160,6 @@ Tie the far ends of all four summing resistors (10 kΩ, 33 kΩ, 27 kΩ, 27 kΩ) 
 ​Bonus Master Tone Knob: 
 
 You can also wire one of those blue rotary pots mounted below your sliders as a passive low-pass tone control right at the output (Mix Bus \rightarrow rotary pot wiper/end lug \rightarrow 47 nF cap to GND) to roll off harsh digital harmonics on the fly.  
+
+Quick Arduino Code Reminder for QOUT1
+​On standard AD9850 modules, QOUT1 automatically outputs a synchronized 5 Vpp square wave at the exact same frequency as ZOUT1 whenever ad9850SetFreq() is called—you don't need any extra code to turn QOUT1 on! You can also adjust the duty cycle of QOUT1 using the tiny blue trimpot on the AD9850 board itself.
