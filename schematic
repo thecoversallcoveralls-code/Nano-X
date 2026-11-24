@@ -1,0 +1,27 @@
+  AD9850 ZOUT1 (Sine Bass)
+       |
+     [===]  4.7uF - 10uF (DC Block)
+       |
+       +-----[ 47k ]-----+
+       |                 |
+     [1k ]              GND
+       |
+       +----|>|----+---- cathode to GND (1N4148 / 1N34A)
+       |    |<|----+---- anode to GND   (1N4148 / 1N34A)
+       |
+    [ 2.2k ]  (Low-Pass Filter ~720 Hz)
+       |
+       +-----[===] 100nF ---- GND
+       |
+    [ 10k ] (or Slider 1 Bass Fader)
+       |
+       +---------------------------------------+
+                                               |
+  AD9850 QOUT1 (Square) ---[===]---[ 33k ]-----+
+                         (DC Block) (Slider 2) |
+                                               |
+  Si5351A CLK0 (+4 Oct) ---[===]---[ 33k ]-----+---> [Master Tone / Vol] ---> Amp / Mixer Out
+                         (DC Block) (Slider 3) |
+                                               |
+  Si5351A CLK1 (+4O+5th) --[===]---[ 33k ]-----+
+                         (DC Block) (Slider 4)
