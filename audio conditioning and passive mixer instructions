@@ -4,4 +4,5 @@ Analog Audio Conditioning & Passive Fader Mixer Schematic
 ​For Analog Warmth / Growl, pass that AC-coupled signal through a 1 kΩ resistor into two anti-parallel diodes (1N4148 or 1N34A, one anode-to-GND and one cathode-to-GND), then through a passive RC low-pass filter (2.2 kΩ series resistor + 100 nF cap to GND, ~720 Hz cutoff).  
 
 ​2. Summing / Mixer Bus:
-​Sum the conditioned AD9850 sine bass (via a 10 kΩ mixing resistor or fader) with the AD9850 square wave (QOUT1) and Si5351A CLK0 / CLK1 outputs (each through a DC-blocking cap and 22 kΩ–47 kΩ resistor/fader).
+​Sum the conditioned AD9850 sine bass (via a 10 kΩ mixing resistor or fader) with the AD9850 square wave (QOUT1) and Si5351A CLK0 / CLK1 outputs
+ (each through a DC-blocking cap and 22 kΩ–47 kΩ resistor/fader).
