@@ -67,6 +67,22 @@ vcpkg_installed/
 Testing/
 .cache/
 
+# Compiled object files and binaries
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.eep
+*.lss
+*.sym
+*.map
+*.d
+*.a
+*.so
+*.dylib
+*.exe
+
 # Arduino IDE & build/cache folders
 build/
 *.ino.cpp
