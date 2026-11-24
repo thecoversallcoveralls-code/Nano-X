@@ -66,3 +66,22 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Arduino IDE & build/cache folders
+build/
+*.ino.cpp
+*.ino.hex
+*.ino.bin
+*.ino.elf
+*.ino.with_bootloader.hex
+*.ino.with_bootloader.bin
+.arduino/
+
+# Linux / OS / Editor temporary files
+*~
+*.swp
+*.swo
+*.bak
+.DS_Store
+Thumbs.db
+
