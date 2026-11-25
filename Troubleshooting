@@ -1,2 +1,39 @@
-1.Step 1: Isolate MIDI vs. Audio Path:Check Nano D2 (Gate) & raw oscillator pins.Before touching the audio wiring, check if pressing a key on the MPK88 triggers Nano D2 (Gate Out)—touch a multimeter (DC Volts) or an LED + 1 kΩ resistor from D2 to GND while holding a key down.If D2 jumps to 5V when you press a key: MIDI is working! The issue is strictly in the AD9850 / Si5351A output pins, breadboard/mixer wiring, or PA input level.If D2 stays at 0V: The Nano is not receiving valid MIDI notes from the MPK88 yet (jump straight to Step 2).Verification: You know immediately whether the break is before the Nano (MIDI) or after the Nano (oscillators/mixer/PA).2.Step 2: Check MPK88 5-Pin DIN MIDI Routing & Breakout RX/TX:Fix the #1 MPK88 USB-power gotcha.Because you powered the MPK88 via USB from your laptop, the MPK88 often defaults to sending MIDI over USB only instead of its 5-pin DIN MIDI OUT jack.On the MPK88 front panel, press GLOBAL and check the MIDI output setting—make sure it is set to BOTH (or MIDI OUT), not USB.Check the wire from your MIDI breakout board to Nano D0 (RX0) (remember we unplugged it during code upload—verify it is firmly plugged back into D0 and that you're on the breakout's MIDI data out / RX-to-Arduino pin, not D1/TX0).Make sure your MIDI breakout board has VCC and GND connected (most optocoupler MIDI-In breakouts won't pass a signal without 5V/3.3V power).Verification: Pressing any key on the MPK88 causes Nano D2 to go HIGH (5V) and the Nano's RX LED to flicker briefly on each keypress.3.Step 3: Check AD9850 D0–D7 Serial Mode Pins & Direct Output:AD9850 Serial Load Mode quirk.If MIDI is arriving (D2 goes HIGH) or if you flash the standalone AD9850_Si5351_Bass_Test.ino loop (which requires no MIDI at all), check two classic AD9850 traps:Serial Enable Strap (D0, D1, D2 on the AD9850): Most standard AD9850 modules have internal pull-ups/pull-downs for serial mode when D0–D7 are left unconnected, but some clone boards require D0 and D1 tied to 5V and D2 tied to GND to lock into Serial Load mode (otherwise ZOUT1 stays completely silent).Tap ZOUT1 or QOUT1 directly before the mixer: Touch your PA input (through a 4.7 µF–10 µF DC-blocking cap) directly to ZOUT1 (sine) or QOUT1 (square) on the AD9850, or CLK0 on the Si5351A, to verify whether the signal is getting lost in the passive faders or 47 kΩ / 10 kΩ summing resistors.
+                                                      NANO X QUICKFIX GUIDE
+
+1.
+
+Step 1: 
+
+Isolate MIDI vs. Audio Path:Check Nano D2 (Gate) & raw oscillator pins.Before touching the audio wiring, check if
+pressing a key on the MPK88 triggers Nano D2 (Gate Out)—touch a multimeter (DC Volts) or an LED + 1 kΩ resistor from D2 to GND
+while holding a key down.If D2 jumps to 5V when you press a key: MIDI is working! 
+The issue is strictly in the AD9850 / Si5351A output pins, breadboard/mixer wiring, or PA input level.If D2 stays at 0V: The Nano
+is not receiving valid MIDI notes from the MPK88 yet (jump straight to Step 2).Verification: You know immediately whether the
+break is before the Nano (MIDI) or after the Nano (oscillators/mixer/PA).
+
+2.
+
+Step 2:
+
+Check MPK88 5-Pin DIN MIDI Routing & Breakout RX/TX:Fix the #1 MPK88 USB-power gotcha.Because you powered the MPK88 via USB 
+from your laptop, the MPK88 often defaults to sending MIDI over USB only instead of its 5-pin DIN MIDI OUT jack.On the MPK88 
+front panel, press GLOBAL and check the MIDI output setting—make sure it is set to BOTH (or MIDI OUT), not USB.Check the wire 
+from your MIDI breakout board to Nano D0 (RX0) (remember we unplugged it during code upload—verify it is firmly plugged back
+into D0 and that you're on the breakout's MIDI data out / RX-to-Arduino pin, not D1/TX0).Make sure your MIDI breakout board has 
+VCC and GND connected (most optocoupler MIDI-In breakouts won't pass a signal without 5V/3.3V power).Verification: Pressing any 
+key on the MPK88 causes Nano D2 to go HIGH (5V) and the Nano's RX LED to flicker briefly on each keypress.
+
+3.
+
+Step 3: 
+
+Check AD9850 D0–D7 Serial Mode Pins & Direct Output:AD9850 Serial Load Mode quirk.If MIDI is arriving (D2 goes HIGH) or 
+if you flash the standalone AD9850_Si5351_Bass_Test.ino loop (which requires no MIDI at all), check two classic AD9850 traps:
+Serial Enable Strap (D0, D1, D2 on the AD9850): Most standard AD9850 modules have internal pull-ups/pull-downs for serial mode 
+when D0–D7 are left unconnected, but some clone boards require D0 and D1 tied to 5V and D2 tied to GND to lock into Serial Load 
+mode (otherwise ZOUT1 stays completely silent).Tap ZOUT1 or QOUT1 directly before the mixer: Touch your PA input
+(through a 4.7 µF–10 µF DC-blocking cap) directly to ZOUT1 (sine) or QOUT1 (square) on the AD9850, or CLK0 on the Si5351A,
+to verify whether the signal is getting lost in the passive faders or 47 kΩ / 10 kΩ summing resistors.
 Verification: You hear the raw tone directly at the module output pin when a note is held (or during the 4-note bass test loop).
+
+
